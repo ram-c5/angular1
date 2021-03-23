@@ -7,37 +7,31 @@
 <!-- To add notes -->
 <mat-expansion-panel class="noteInputContainer">
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        Note
-      </mat-panel-title>
+      <mat-panel-title>Take a note</mat-panel-title>
     </mat-expansion-panel-header>
     
     <div class="noteInputs">
       <!-- title -->
-      <mat-form-field>
+      <mat-form-field name="title">
         <input [(ngModel)] = "note.title" matInput placeholder="Enter note Title">
       </mat-form-field>
       <!-- text -->
-      <mat-form-field>
+      <mat-form-field name="text">
         <textarea [(ngModel)] = "note.text" matInput placeholder="Enter note Text"></textarea>
       </mat-form-field>
     </div>
   
     <div class="noteSubmit">
       <!-- button -->
-      <button mat-raised-button (click)="takeNote()" color="primary">Done</button>
+      <button mat-raised-button (click)="takeNote()" color="accent">Done</button>
     </div>
   
 </mat-expansion-panel>
 
 <!-- Load and display the collection of notes from server as Material Cards with card title set to note title and card content set to note text  -->
 <mat-card class="noteCard" *ngFor="let curnote of notes">
-    <mat-card-title>
-      {{curnote.title}}
-    </mat-card-title>
-    <mat-card-content>
-      {{curnote.text}}
-    </mat-card-content>
+    <mat-card-title>{{ curnote.title }}</mat-card-title>
+    <mat-card-content>{{ curnote.text }}</mat-card-content>
 </mat-card>
 
 

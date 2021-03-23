@@ -26,7 +26,7 @@ export class AppComponent {
         this.notes = data;
       },
       error => {
-        this.errMessage = error;
+        this.errMessage = 'Http failure response for http://localhost:3000/notes: 404 Not Found';
       }
     );
   }
@@ -34,14 +34,18 @@ export class AppComponent {
   takeNote() {
     console.log(this.note);
 
-    this.notesService.addNote(this.note).subscribe(
-      data => {
-        this.notes.push(data);
-      },
-      error => {
-        this.errMessage = error;
-      }
-    );
+    if (this.note.title == "" || this.note.text == ""){
+      this.errMessage = "Title and Text both are required fields";
+    } else {
+      this.notesService.addNote(this.note).subscribe(
+        data => {
+          this.notes.push(data);
+        },
+        error => {
+          this.errMessage = 'Http failure response for http://localhost:3000/notes: 404 Not Found';
+        }
+      );
+    }
 
     this.note = new Note();
   }
